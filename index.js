@@ -3,6 +3,7 @@ const cors = require("cors")
 const helmet = require("helmet")
 const dateRouter = require("./Routers/dateRouter.js")
 const meetingRouter = require("./Routers/meetingRouter.js")
+const contactRouter = require("./Routers/contactRouter.js")
 //=========Setting up the server========
 const server = express();
 const PORT = process.env.PORT || 5555;
@@ -15,7 +16,7 @@ server.listen(PORT, () => {
 server.use(cors(),helmet(),express.json())
 server.use("/api/v1/date",dateRouter)
 server.use("/api/v1/meeting",meetingRouter)
-
+server.use("/api/v1/contact",contactRouter)
 //===========Server UP endpoint========================//
 server.get("/",(req,res) => {
     res.json({is_server_up:"true"})
