@@ -26,9 +26,12 @@
     "express": "^4.17.1",
     "googleapis": "^63.0.0",
     "helmet": "^4.1.1",
+    "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.6",
     "nodemailer": "^6.4.14",
     "nodemon": "^2.0.5",
-    "pg": "^8.4.1"
+    "pg": "^8.4.1",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6"
   }
 }
