@@ -1,7 +1,5 @@
 const router = require('express').Router();
-const { default: Axios } = require('axios');
 const database = require("../config/knex-config.js");
-const { development } = require('../knexfile.js');
 require('dotenv').config();
 
 
