@@ -94,45 +94,5 @@ database.select("*")
    })
     
 })
- /**
-  * Schedule meeting
-  * Sends emails to both me and the req.body.email
-  * updates schedule from free to meeting
-  */
 
- /**
-  * Return suggested times to meet 
-  * Get all the times in the database over a certain date range
-  * Find which of those times are free for each date
-  * return the 3 best times for each date
-  */
- router.get("/suggestedTimes/:startDate/:endDate",(req,res) => {
-     let queryUrl = ""
-     const {startDate,endDate} = req.params;
-     database.select("*")
-     .whereBetween("day.currentDate",[startDate,endDate])
-     .from("day")
-     .then(data => {
-        let results = []
-        let freeTimes = []
-         results.push(data)
-         for(let i =0;i< results.length;i++){
-            let currentObject = results[i]
-            //Go through each object and push the date and the free times into a new object
-            let filteredData = {}
-            for(let key in currentObject){
-                if(key === "currentDate"){
-                    filteredData[key] = currentObject[key]
-                }else if(currentObject[key] === "free"){
-                    filteredData[key] = currentObject[key]
-                }
-            }
-            freeTimes.push(filteredData)
-         }
-         console.log(filteredData)
-         res.status(200).json({hi:"hi"})
-     }).catch(err => {
-         res.status(500).json(err)
-     })
- })
 module.exports = router
