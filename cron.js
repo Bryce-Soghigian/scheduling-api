@@ -1,6 +1,6 @@
 const Axios = require("axios")
 var startDate = new Date("2020-10-01"); //YYYY-MM-DD
-var endDate = new Date("2020-12-30"); //YYYY-MM-DD
+var endDate = new Date("2024-12-30"); //YYYY-MM-DD
 
 var getDateArray = function(start, end) {
     var arr = new Array();
@@ -10,7 +10,7 @@ var getDateArray = function(start, end) {
         var dd = String(dt.getDate()).padStart(2, "0");
         var mm = String(dt.getMonth() + 1).padStart(2, "0");
         var yyyy = dt.getFullYear();
-        let newStartDate = `${mm}${dd}${yyyy}`;
+        let newStartDate = `${yyyy}${mm}${dd}`;
         arr.push(newStartDate);
     }
     return arr;

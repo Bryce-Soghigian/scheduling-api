@@ -66,21 +66,15 @@ const token = jwt.sign(payload, process.env.zoomApiSecret);
 
 
 let desiredStartTime = req.body.currentDate;
-let formatedStartDate =
-desiredStartTime.slice(0, 2) +
-"-" +
-desiredStartTime.slice(2, 4) +
-"-" +
-desiredStartTime.slice(6);
+let formatedStartDate = `${desiredStartTime.slice(0,3)}-${desiredStartTime.slice(3,5)}-${desiredStartTime.slice(5,7)}`
 formatedStartDate = new Date(formatedStartDate);
 var dd = String(formatedStartDate.getDate()).padStart(2, "0");
 var mm = String(formatedStartDate.getMonth() + 1).padStart(2, "0");
 var yyyy = formatedStartDate.getFullYear();
 let newStartDate = `${mm}-${dd}-${yyyy}`;
+console.log(newStartDate)
 let startTime = new Date(newStartDate)
 let hours = key[0]+key[1]
-// console.log(convertCentralToUtc)
-// startTime.setUTCHours()
 startTime.setHours(hours-6)
 startTime.toISOString()
 console.log(startTime)
@@ -148,8 +142,8 @@ rp(options)
         //================Email Config================
         const monthsArray = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
         const currentDate = req.body.currentDate;
-        let month = monthsArray[currentDate.slice(0,2)-1]
-        let day = currentDate.slice(2,4)
+        let month = monthsArray[currentDate.slice(3,5)]
+        let day = currentDate.slice(5,7)
         const mailOptions = {
             from: "mrsoghigiansvirtualassistant@gmail.com", // sender
             to: email, // receiver
@@ -197,8 +191,8 @@ router.put("/phone", (req, res) => {
   const date = req.body.currentDate;
   const email = req.body.email;
   const currentDate = req.body.currentDate;
-  let month = monthsArray[currentDate.slice(0,2)-1]
-  let day = currentDate.slice(2,4)
+  let month = monthsArray[currentDate.slice(4,6)-1]
+  let day = currentDate.slice(6,8)
   //Set up the update object
   let key;
   let updateObject = {};

@@ -3,7 +3,7 @@ The purpose of this table is to basically hold all the events in my calendar
  */
 exports.up = function(knex) {
   return knex.schema.createTable("day", table => {
-table.text("currentDate").references("date").inTable("calendar")
+table.text("currentDate").references("date").inTable("calendar").unique()
 table.text("00:00")
 table.text("01:00")
 table.text("02:00")
