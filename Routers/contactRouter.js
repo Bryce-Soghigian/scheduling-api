@@ -43,12 +43,6 @@ router.put("/zoom", (req,res) =>{
 
         //================================================================================================================================================================
 
-
-
-
-
-
-
   //================Zoom api create meeting logic============
   //Use the ApiKey and APISecret from .env
 
@@ -60,11 +54,6 @@ iss: process.env.zoomApiKey,
 exp: ((new Date()).getTime() + 5000)
 };
 const token = jwt.sign(payload, process.env.zoomApiSecret);
-
-
-
-
-
 let desiredStartTime = req.body.currentDate;
 let formatedStartDate = `${desiredStartTime.slice(0,3)}-${desiredStartTime.slice(3,5)}-${desiredStartTime.slice(5,7)}`
 formatedStartDate = new Date(formatedStartDate);
@@ -146,7 +135,7 @@ rp(options)
         let day = currentDate.slice(5,7)
         const mailOptions = {
             from: "mrsoghigiansvirtualassistant@gmail.com", // sender
-            to: email, // receiver
+            to: `${email},"bsoghigian@gmail.com`, // receiver
             subject: "Zoom Meeting", // Subject
             html: `You have successfully scheduled a zoom interview with Mr. Bryce Soghigian for ${key} on  ${month} ${day} \n Please join the meeting at ${responseObject.zoomMeetingSuccess.join_url}`, // html body
           };
@@ -207,7 +196,7 @@ router.put("/phone", (req, res) => {
   updateObject[key] = req.body[key];
   const mailOptions = {
     from: "mrsoghigiansvirtualassistant@gmail.com", // sender
-    to: email, // receiver
+    to: `${email},bsoghigian@gmail.com`, // receiver
     subject: "Phone Interview", // Subject
     html: `You have successfully scheduled a phone interview with Mr. Bryce Soghigian for ${key} on  ${month} ${day} \n Please call him at 515-361-2386`, // html body
   };
