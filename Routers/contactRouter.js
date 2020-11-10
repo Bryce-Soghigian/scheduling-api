@@ -55,12 +55,12 @@ exp: ((new Date()).getTime() + 5000)
 };
 const token = jwt.sign(payload, process.env.zoomApiSecret);
 let desiredStartTime = req.body.currentDate;
-let formatedStartDate = `${desiredStartTime.slice(0,3)}-${desiredStartTime.slice(3,5)}-${desiredStartTime.slice(5,7)}`
+let formatedStartDate = `${desiredStartTime.slice(0,4)}-${desiredStartTime.slice(4,6)}-${desiredStartTime.slice(6,8)}`
 formatedStartDate = new Date(formatedStartDate);
 var dd = String(formatedStartDate.getDate()).padStart(2, "0");
 var mm = String(formatedStartDate.getMonth() + 1).padStart(2, "0");
 var yyyy = formatedStartDate.getFullYear();
-let newStartDate = `${mm}-${dd}-${yyyy}`;
+let newStartDate = `${yyyy}-${mm}-${dd}`;
 console.log(newStartDate)
 let startTime = new Date(newStartDate)
 let hours = key[0]+key[1]
@@ -124,7 +124,6 @@ rp(options)
 .then(function (response) {
 //printing the response on the console
   responseObject["zoomMeetingSuccess"] = response
-  console.log(responseObject)
   res.status(200).json(responseObject)
 })
 .then(data => {
