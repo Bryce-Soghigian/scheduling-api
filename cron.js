@@ -20,7 +20,7 @@ let datesArray = getDateArray(startDate,endDate)
 //Seed database with dates
 for(let i = 0;i<datesArray.length;i++){
     let requestObject = {date:datesArray[i]}
-    Axios.post("http://localhost:5555/api/v1/date/",requestObject)
+    Axios.post("https://scheduling-api-bryce-portfolio.herokuapp.com/api/v1/date/",requestObject)
     .then(res => {
         console.log(res)
     }).catch(err => {
@@ -45,17 +45,17 @@ for(let i = 0;i<datesArray.length;i++){
         "12:00":"free",
         "13:00":"free",
         "14:00":"free",
-        "15:00":"free",
-        "16:00":"free",
-        "17:00":"free",
-        "18:00":"free",
+        "15:00":"Working",
+        "16:00":"Working",
+        "17:00":"Working",
+        "18:00":"Studying",
         "19:00":"free",
-        "20:00":"free",
-        "21:00":"free",
-        "22:00":"free",
+        "20:00":"Studying",
+        "21:00":"Studying",
+        "22:00":"Studying",
         "23:00":"leetcode"
     }
-    Axios.post("http://localhost:5555/api/v1/meeting/fullday",requestObject)
+    Axios.post("https://scheduling-api-bryce-portfolio.herokuapp.com/api/v1/meeting/fullday",requestObject)
     .then(res => {
         console.log(res)
     }).catch(err => {
