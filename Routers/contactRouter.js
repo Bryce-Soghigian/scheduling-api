@@ -16,7 +16,9 @@ const rp = require('request-promise');
 router.put("/zoom", (req,res) =>{
   const date = req.body.currentDate;
   const email = req.body.email;
-  let zoomUrl;
+  const monthsArray = ["January","Febuary","March","April","May","June","July","August","September","October","November","December"]
+  const currentDate = req.body.currentDate;
+  let month = monthsArray[currentDate.slice(4,6)-1]
   //============= Update meeting time logic=================
   let key;
   let updateObject = {};
@@ -54,19 +56,24 @@ iss: process.env.zoomApiKey,
 exp: ((new Date()).getTime() + 5000)
 };
 const token = jwt.sign(payload, process.env.zoomApiSecret);
+
 let desiredStartTime = req.body.currentDate;
 let formatedStartDate = `${desiredStartTime.slice(0,4)}-${desiredStartTime.slice(4,6)}-${desiredStartTime.slice(6,8)}`
+console.log(formatedStartDate)
 formatedStartDate = new Date(formatedStartDate);
-var dd = String(formatedStartDate.getDate()).padStart(2, "0");
+var dd = String(formatedStartDate.getDate()+1).padStart(2, "0");
 var mm = String(formatedStartDate.getMonth() + 1).padStart(2, "0");
 var yyyy = formatedStartDate.getFullYear();
 let newStartDate = `${yyyy}-${mm}-${dd}`;
-console.log(newStartDate)
-let startTime = new Date(newStartDate)
-let hours = key[0]+key[1]
-startTime.setHours(hours-6)
-startTime.toISOString()
-console.log(startTime)
+console.log(newStartDate,"new start")
+let newHour = Number(key[0] + key[1])
+
+newHour = newHour.toString() +":" + "00"
+console.log(newHour,"faff")
+let startTime = new Date(`${dd} ${month} ${yyyy} ${newHour} UTC`)
+
+startTime = startTime.toISOString()
+console.log(startTime,"start time date")
 //ZOOM API REQUEST BODY 
 let zoomRequestBody = {
 "created_at": startTime,
@@ -128,10 +135,8 @@ rp(options)
 })
 .then(data => {
         //================Email Config================
-        const monthsArray = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
-        const currentDate = req.body.currentDate;
-        let month = monthsArray[currentDate.slice(3,5)]
-        let day = currentDate.slice(5,7)
+
+        let day = currentDate.slice(6,8)
         const mailOptions = {
             from: "mrsoghigiansvirtualassistant@gmail.com", // sender
             to: `${email},"bsoghigian@gmail.com`, // receiver
