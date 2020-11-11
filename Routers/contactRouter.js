@@ -65,11 +65,8 @@ var dd = String(formatedStartDate.getDate()+1).padStart(2, "0");
 var mm = String(formatedStartDate.getMonth() + 1).padStart(2, "0");
 var yyyy = formatedStartDate.getFullYear();
 let newStartDate = `${yyyy}-${mm}-${dd}`;
-console.log(newStartDate,"new start")
 let newHour = Number(key[0] + key[1])
-
 newHour = newHour.toString() +":" + "00"
-console.log(newHour,"faff")
 let startTime = new Date(`${dd} ${month} ${yyyy} ${newHour} UTC`)
 
 startTime = startTime.toISOString()
@@ -77,7 +74,7 @@ console.log(startTime,"start time date")
 //ZOOM API REQUEST BODY 
 let zoomRequestBody = {
 "created_at": startTime,
-"duration": 60,
+"duration": 40,
 "host_id": "Sy5IuXCgT1iDmDcMFa6Rzg",
 "id": 1100000,
 "join_url": "https://zoom.us/j/1100000",
@@ -104,7 +101,7 @@ let zoomRequestBody = {
 "start_time": startTime,
 "start_url": "https://zoom.us/s/1100000?iIifQ.wfY2ldlb82SWo3TsR77lBiJjR53TNeFUiKbLyCvZZjw",
 "status": "waiting",
-"timezone": "America/Chicago",
+"timezone": "america/chicago",
 "topic": "Zoom Interview",
 "type": 2,
 "uuid": "ng1MzyWNQaObxcf3+Gfm6A=="
