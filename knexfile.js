@@ -1,4 +1,8 @@
 require('dotenv').config();
+const pg = require('pg')
+pg.defaults.ssl = {
+  rejectUnauthorized: false,
+}
 module.exports = {
 
   development: {
@@ -21,6 +25,9 @@ module.exports = {
   production: {
     client: 'postgres',
     connection: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    },
     migrations: {
       directory: __dirname + '/db/migrations'
     }
